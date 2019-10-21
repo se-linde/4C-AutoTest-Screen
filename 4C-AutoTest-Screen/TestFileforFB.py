@@ -5,8 +5,13 @@ from selenium.webdriver.common.keys import Keys
 # from selenium import FirefoxDriver;
 
 
-user = "test@test.com"  #These will not log in. 
-pwd = "testtest"  #These will not log in. 
+# user = "test@test.com"  #These will not log in.
+# pwd = "testtest"  #These will not log in.
+
+# FB Test Account.
+user = "microdwaynedev@gmail.com"
+pwd = "Faceraigi1!"
+
 
 # driver = webdriver.Firefox()
 driver = webdriver.Firefox(executable_path='/Library/Frameworks/Python.framework/Versions/3.7/bin/geckodriver')
