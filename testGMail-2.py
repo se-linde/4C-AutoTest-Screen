@@ -1,9 +1,18 @@
-from StdSuites import event
+# Imported libraries.
+
 from time import sleep, time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-# from selenium import FirefoxDriver;
+# These will try to get reports going.
+import HtmlTestRunner
+import unittest
+
+# Try this as a tutorial:
+# https://scrolltest.com/2015/04/30/selenium-test-case-in-python/
+
+# https://testingbot.com/support/getting-started/pyunit.html
+
 
 # Change to YouTube Test Account
 user = "microdwaynedev@gmail.com"
