@@ -15,22 +15,31 @@ import HtmlTestRunner
 
 # https://www.browserstack.com/guide/python-selenium-to-run-web-automation-test
 
-class SeleniumTestGmailLogin(unittest.TestCase):
+# https://stackoverflow.com/questions/20251386/pycharm-and-unittest-does-not-work
 
-    def setUp(self):
+# https://github.com/se-linde/SeleniumTestWithPython/blob/master/UnitTest_Demo.py
+
+class GmailLogin(unittest.TestCase):
+
+    def setUp(cls):
+
         # GMail Test Account
-        user = "microdwaynedev@gmail.com"
-        pwd = "Micrraigi1!"
-        driver = webdriver.Firefox(executable_path='/Library/Frameworks/Python.framework/Versions/3.7/bin/geckodriver')
+        cls.user = "microdwaynedev@gmail.com"
+        cls.pwd = "Micrraigi1!"
+        cls.driver = webdriver.Firefox(executable_path='/Library/Frameworks/Python.framework/Versions/3.7/bin/geckodriver')
+
 
     def test_gmail(self):
+
         # Putting this in to prevent race conditions, and to allow all of the elements
         # on the page to be found.
 
-        driver = self.driver
-        driver.implicitly_wait(20)  # seconds.
-        driver.get("https://www.gmail.com")
-        driver.set_window_size(1088, 788)
+        # driver = self.setUp.driver
+        self.driver.implicitly_wait(20)  # seconds.
+        self.driver.get("https://www.gmail.com")
+        # Alternate URL: https://www.google.com/intl/en-US/gmail/about/
+
+        self.driver.set_window_size(1088, 788)
 
         sleep(10)
 
@@ -48,11 +57,11 @@ class SeleniumTestGmailLogin(unittest.TestCase):
 
 
         # This makes sure that I am on the right page.
-        assert "Gmail" in driver.title
+        assert "Gmail" in self.driver.title
 
-        elem = driver.find_element_by_id("identifierId")
+        elem = self.driver.find_element_by_id("identifierId")
 
-        elem.send_keys(self.setUp.user)
+        elem.send_keys(self.user)
 
         elem.send_keys(Keys.RETURN)
 
@@ -67,31 +76,37 @@ class SeleniumTestGmailLogin(unittest.TestCase):
         # PASSWORD FIELD
         # XPATH relpath: //input[@name='password']
 
-        sleep(20)
+        sleep(5)
 
-        elem = driver.find_element_by_xpath("//input[@name='password']")
+        elem = self.driver.find_element_by_xpath("//input[@name='password']")
 
-        sleep(20)
+        sleep(5)
 
 
         # This is the class for the element of the text field in the box.
 
-        elem.send_keys(self.setUp.pwd)
+        elem.send_keys(self.pwd)
 
-        sleep(20)
+        sleep(5)
 
 
         # Get sleep working.
 
         elem.send_keys(Keys.RETURN)
 
-        sleep(20)
+        sleep(5)
 
-    def tearDown(self):
+    # def tearDown(self):
 
-        self.setUp.driver.close()
+        self.driver.close()
 
 
 if __name__ == '__main__':
 
-    unittest.main()
+    # unittest.main()
+
+    # test_class = SeleniumTestGmailLogin()
+
+    # HTML test runner example: https://www.dev2qa.com/python-3-unittest-html-and-xml-report-example/
+
+    unittest.main(verbosity=2)
